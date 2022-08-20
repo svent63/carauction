@@ -104,28 +104,19 @@ describe("CarAuction", async () => {
 
     describe("withdraw", async () => {
         let bidderOne
-        let bidderOneBalance
-
         let bidderTwo
-        let bidderTwoBalance
-
         let bidderThree
-        let bidderThreeBalance
 
         beforeEach(async () => {
             const accounts = await ethers.getSigners()
 
             bidderOne = await carAuction.connect(accounts[1])
             await bidderOne.enterAuction({ value: ethers.utils.parseEther("0.025") })
-            // bidderOneBalance = await provider.getBalance(bidderOne.address)
 
             bidderTwo = await carAuction.connect(accounts[2])
-            // await bidderTwo.enterAuction({ value: ethers.utils.parseEther("0.03") })
-            // bidderTwoBalance = await carAuction.provider.getBalance(bidderTwo)
 
             bidderThree = await carAuction.connect(accounts[3])
             await bidderThree.enterAuction({ value: ethers.utils.parseEther("0.04") })
-            // bidderThreeBalance = await carAuction.provider.getBalance(bidderThree)
 
             const transactionResponse = await carAuction.completeAuction()
             await transactionResponse.wait(1)
